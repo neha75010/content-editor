@@ -18,14 +18,44 @@ export const GStyle = createGlobalStyle`
         overflow: hidden;
         height: 100%;
         margin: 0;
-        ${({ $dark = true }) => !$dark ? `--primary: ${palette.dark}; --background: ${palette.light};` : `--primary: ${palette.light}; --background: ${palette.dark};`};
-        --text: ${palette.white};
     }
 
     #root {
         display: flex;
-        flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: space-between;
+        background-color: #232323;
+        padding: 2rem;
+    }
+
+    * {
+        --sb-track-color: #ffff;
+        --sb-thumb-color: #00f8;
+        --sb-size: 9px;
+        scroll-behavior: smooth;
+    }
+
+    ::-webkit-scrollbar {
+        width: var(--sb-size);
+        height: var(--sb-size);
+        position: absolute;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: var(--sb-track-color);
+        border-radius: 12px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: var(--sb-thumb-color);
+        border: 3px solid var(--sb-track-color);
+        border-radius: 12px;
+    }
+
+    @supports not selector(::-webkit-scrollbar) {
+        * {
+            scrollbar-color: var(--sb-thumb-color)
+                            var(--sb-track-color);
+        }
     }
 `;
