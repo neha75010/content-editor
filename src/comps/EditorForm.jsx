@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import Label from "./Label";
 import { AppContext } from "../providers/AppProvider";
 import { Muted, MutedSmall } from "./Muted";
@@ -9,6 +9,25 @@ const input = {
 	input : ({ ...props }) => <input type="text" { ...props } />,
 	textarea : ({ ...props }) => <textarea { ...props } />,
 	color : ({ ...props }) => <input type="color" { ...props } />,
+	src : ({ autoFocus, onChange, value, placeholder }) => {
+		var base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
+		const [vl, setVl] = useState(!base64regex.test(value) ? value : "");
+
+		useEffect(() => {
+			onChange({ target: { value: vl } });
+		}, [vl]);
+
+		return <>
+			<input type="hidden" value={vl} onChange={onChange} />
+			<input type="text" onChange={e => setVl(e.target.value)} />
+			<input type="file" onChange={e => {
+				var reader = new FileReader();
+				reader.readAsDataURL(e.target.files[0]);
+				reader.onload = () => setVl(reader.result);
+				reader.onerror = (error) => console.log('Error: ', error);
+			}} multiple={false} accept="image/*" />
+		</>
+	},
 };
 
 export default function EditorForm() {

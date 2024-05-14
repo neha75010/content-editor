@@ -59,7 +59,7 @@ const elements = {
 		Icon: ({ ...props }) => <LuSeparatorHorizontal {...props} />,
 	},
 	image: {
-		editor: [{ type: "input", key: "content", label: "Source" }],
+		editor: [{ type: "src", key: "content", label: "Source" }],
 		Render: ({ content }) => <img src={content} />,
 		title : "Image",
 		Icon: ({ ...props }) => <CiImageOn {...props} />,
