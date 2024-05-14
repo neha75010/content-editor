@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import Label from "./Label";
+import Label from "./EditorFormLabel";
 import { AppContext } from "../providers/AppProvider";
 
 export default function EditorChangeType() {

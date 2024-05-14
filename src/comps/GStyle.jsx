@@ -12,6 +12,10 @@ export const GStyle = createGlobalStyle`
         font-family: Raleway;
         box-sizing: border-box;
         outline: none;
+        --light: ${palette.light};
+        --dark: ${palette.dark};
+        --white: ${palette.white};
+        --black: ${palette.black};
     }
 
     html, body, #root {
@@ -30,7 +34,7 @@ export const GStyle = createGlobalStyle`
 
     * {
         --sb-track-color: #ffff;
-        --sb-thumb-color: #00f8;
+        --sb-thumb-color: var(--light);
         --sb-size: 9px;
         scroll-behavior: smooth;
     }

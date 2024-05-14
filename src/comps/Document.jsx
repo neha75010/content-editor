@@ -1,7 +1,7 @@
 import { useContext, useEffect, useRef } from "react";
 import { AppContext } from "../providers/AppProvider";
-import RmvElement from "./RmvElement";
-import SwpElement from "./SwpElement";
+import RmvElement from "./ElementRmv";
+import SwpElement from "./ElementSwp";
 import Panel from "./Panel";
 import styled from "styled-components";
 import Markdown from 'react-markdown';

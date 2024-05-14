@@ -2,6 +2,10 @@ import styled from "styled-components";
 import { PiDotsThreeCircleThin, PiXCircleThin } from "react-icons/pi";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
+import Container from "./DocumentDropdownContainer";
+import Dropdown from "./DocumentDropdownComp";
+import Opener from "./Opener";
+import Item from "./DocumentDropdownItem";
 
 export default function DocumentDropdown ({ items }) {
 	const [opened, setOpened] = useState(false);
@@ -16,7 +20,7 @@ export default function DocumentDropdown ({ items }) {
 		})
 	}, [opened, dropdown, opener]);
 
-	return <DropdownContainer>
+	return <Container>
 		<Opener ref={opener} onClick={() => setOpened(!opened)}>
 			{
 				!opened ?
@@ -29,10 +33,5 @@ export default function DocumentDropdown ({ items }) {
 				return <Item key={i} onClick={onClick}>{title}</Item>
 			})}
 		</Dropdown>}
-	</DropdownContainer>
+	</Container>
 }
-
-const Opener = styled.button`height: 2em; width: fit-content; aspect-ratio: 1; display: flex; align-items: center; justify-content: center; overflow: hidden; z-index: 999; border-radius: 0.5em 0 0.5em 0; border: 0; background-color: #0000; color: #33f; top:0; right: 0; padding: 0em;`;
-const DropdownContainer = styled.div`padding: 0.5em; position: absolute; top: 0; right: 0; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 0.25em;`;
-const Dropdown = styled(motion.div)`border-radius: 0.5em; box-shadow: 0 0 5px #0002; z-index: 999; background-color: white;`;
-const Item = styled.div`padding: 0.75em 1.5em; cursor: pointer; font-size: 11px; &:hover{ background-color: #00000006; } &:first-child{ border-radius: 0.5em 0.5em 0 0; } &:last-child{ border-radius: 0 0 0.5em 0.5em; } &:not(:last-child){ border-bottom: 1px solid #0002; }`;

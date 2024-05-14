@@ -2,8 +2,8 @@ import { BsParagraph } from "react-icons/bs";
 import { CiText, CiImageOn, CiVideoOn } from "react-icons/ci";
 import { LuSeparatorHorizontal } from "react-icons/lu";
 import { IoIosLink } from "react-icons/io";
-import Md from "../comps/Md";
-import Jumbotron from "../comps/Jumbotron";
+import Md from "../comps/DocumentMd";
+import Jumbotron from "../comps/DocumentJumbotron";
 import { RiTextBlock } from "react-icons/ri";
 
 const elements = {
@@ -12,46 +12,47 @@ const elements = {
 			{ type: "input", inputType: "text", key: "content", label: "Titre" },
 			{ type: "align", key: "align", label: "Alignement" },
 		],
-		Render: ({ content, ...props }) => <h1 {...props}><Md>{content}</Md></h1>,
+		Render: ({ content, align, ...props }) => <h1 {...props}><Md $align={align}>{content}</Md></h1>,
 		title : "Titre",
 		Icon: ({ ...props }) => <CiText {...props} />,
 	},
 	title2: {
-		editor: [{ type: "input", inputType: "text", key: "content", label: "Titre" }],
-		Render: ({ content, ...props }) => <h2 {...props}><Md>{content}</Md></h2>,
+		editor: [{ type: "input", inputType: "text", key: "content", label: "Titre" },{ type: "align", key: "align", label: "Alignement" }],
+		Render: ({ content, align, ...props }) => <h2 {...props}><Md $align={align}>{content}</Md></h2>,
 		title : "Titre 2",
 		Icon: ({ ...props }) => <CiText {...props} />,
 	},
 	title3: {
-		editor: [{ type: "input", inputType: "text", key: "content", label: "Titre" }],
-		Render: ({ content, ...props }) => <h3 {...props}><Md>{content}</Md></h3>,
+		editor: [{ type: "input", inputType: "text", key: "content", label: "Titre" },{ type: "align", key: "align", label: "Alignement" }],
+		Render: ({ content, align, ...props }) => <h3 {...props}><Md $align={align}>{content}</Md></h3>,
 		title : "Titre 3",
 		Icon: ({ ...props }) => <CiText {...props} />,
 	},
 	title4: {
-		editor: [{ type: "input", inputType: "text", key: "content", label: "Titre" }],
-		Render: ({ content, ...props }) => <h4 {...props}><Md>{content}</Md></h4>,
+		editor: [{ type: "input", inputType: "text", key: "content", label: "Titre" },{ type: "align", key: "align", label: "Alignement" }],
+		Render: ({ content, align, ...props }) => <h4 {...props}><Md $align={align}>{content}</Md></h4>,
 		title : "Titre 4",
 		Icon: ({ ...props }) => <CiText {...props} />,
 	},
 	text: {
-		editor: [{ type: "textarea", key: "content", label: "Contenu" }],
-		Render: ({ content, ...props }) => <Md {...props}>{content}</Md>,
+		editor: [{ type: "textarea", key: "content", label: "Contenu" },{ type: "align", key: "align", label: "Alignement" }],
+		Render: ({ content, align, ...props }) => <Md {...props} $align={align}>{content}</Md>,
 		title : "Texte",
 		Icon: ({ ...props }) => <BsParagraph {...props} />,
 	},
 	link: {
 		editor: [
 			{ type: "input", key: "href", label: "Lien vers ..." },
-			{ type: "input", key: "content", label: "Texte" }
+			{ type: "input", key: "content", label: "Texte" },
+			{ type: "align", key: "align", label: "Alignement" }
 		],
-		Render: ({ href, content : text, ...props }) => <a href={href} {...props}><Md>{(text === undefined || text === "") ? href : text}</Md></a>,
+		Render: ({ href, content : text, align, ...props }) => <a href={href} {...props}><Md $align={align}>{(text === undefined || text === "") ? href : text}</Md></a>,
 		title : "Lien",
 		Icon: ({ ...props }) => <IoIosLink {...props} />,
 	},
 	small: {
-		editor: [{ type: "textarea", key: "content", label: "Contenu" }],
-		Render: ({ content, ...props }) => <small><Md {...props}>{content}</Md></small>,
+		editor: [{ type: "textarea", key: "content", label: "Contenu" },{ type: "align", key: "align", label: "Alignement" }],
+		Render: ({ content, align, ...props }) => <small><Md {...props}>{content}</Md></small>,
 		title : "Petit texte",
 		Icon: ({ ...props }) => <BsParagraph {...props} />,
 	},
@@ -78,11 +79,12 @@ const elements = {
 			{ type: "color", key: "color", label: "Couleur" },
 			{ type: "color", key: "tcolor", label: "Couleur texte" },
 			{ type: "input", key: "title", label: "Titre" },
-			{ type: "textarea", key: "content", label: "Texte" }
+			{ type: "textarea", key: "content", label: "Texte" },
+			{ type: "align", key: "align", label: "Alignement" }
 		],
-		Render: ({ color, tcolor, title, content : text, ...props }) => <Jumbotron $bg={color} $clr={tcolor} {...props}>
-			{(title !== undefined && title !== "") && <b><Md>{title}</Md></b>}
-			{(text !== undefined && text !== "") && <Md>{text}</Md>}
+		Render: ({ color, tcolor, title, align, content : text, ...props }) => <Jumbotron $bg={color} $clr={tcolor} $align={align} {...props}>
+			{(title !== undefined && title !== "") && <b><Md $align={align}>{title}</Md></b>}
+			{(text !== undefined && text !== "") && <Md $align={align}>{text}</Md>}
 		</Jumbotron>,
 		title : "Bloc",
 		Icon: ({ ...props }) => <RiTextBlock {...props} />,

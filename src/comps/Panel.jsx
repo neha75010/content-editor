@@ -1,7 +1,7 @@
 import styled from 'styled-components'
-import Padding from './Padding';
-import LBox from './LBox';
-import WBox from './WBox';
+import Padding from './PanelPadding';
+import LBox from './PanelLBox';
+import WBox from './PanelWBox';
 
 export default function Panel ({children, $full, $left, ref, ...props}) {
 	return <Padding $full={$full}>

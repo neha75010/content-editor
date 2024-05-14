@@ -1,20 +1,22 @@
 import { useContext, useEffect, useState } from "react";
-import Label from "./Label";
+import Label from "./EditorFormLabel";
 import { AppContext } from "../providers/AppProvider";
 import { Muted, MutedSmall } from "./Muted";
-import RmvElement from "./RmvElement";
-import SwpElement from "./SwpElement";
+import RmvElement from "./ElementRmv";
+import SwpElement from "./ElementSwp";
+import { FaAlignLeft, FaAlignCenter, FaAlignRight } from "react-icons/fa6";
+import AlignInput from "./EditorFormAlignInput"
 
 const input = {
 	input : ({ ...props }) => <input type="text" { ...props } />,
 	textarea : ({ ...props }) => <textarea { ...props } />,
 	color : ({ ...props }) => <input type="color" { ...props } />,
 	align : ({ onChange, value }) => {
-		const aligns = ['left', 'center', 'right'];
+		const aligns = [{name:'left', Icon: FaAlignLeft}, {name:'center', Icon: FaAlignCenter}, {name:'right', Icon: FaAlignRight}];
 
-		return <div>
-			{aligns.map((align, i) => <button key={i} onClick={() => onChange({ target: { value: align } })} />)}
-		</div>
+		return <AlignInput>
+			{aligns.map((align, i) => <button key={i} onClick={() => onChange({ target: { value: align.name } })}><align.Icon /></button>)}
+		</AlignInput>
 	},
 	src : ({ autoFocus, onChange, value, placeholder }) => {
 		const [vl, setVl] = useState(value);
@@ -48,6 +50,6 @@ export default function EditorForm() {
 				<Comp autoFocus onChange={event => updElement(selected, key, event.target.value !== "" ? event.target.value : undefined)} value={document[selected][key] ?? ""} placeholder={label} />
 			</Label>;
 		})}
-		<Label> <RmvElement index={selected} onClick={() => select(null)} /> </Label>
+		<RmvElement index={selected} onClick={() => select(null)} />
 	</>;
 }

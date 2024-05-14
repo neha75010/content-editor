@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import styled from "styled-components";
 import { AppContext } from "../providers/AppProvider";
+import SelectedWrapper from "./SelectedWrapper";
 
 export default function DocumentRender({ targetRef }) {
 	const { useDoc : { document, elements }, select, selected } = useContext(AppContext);
@@ -21,9 +22,3 @@ export default function DocumentRender({ targetRef }) {
 
 const Doc = styled.div`display: flex; flex-direction: column; gap: 0.5em; overflow: visible; width: 100%;`;
 const Empty = styled.div`background-color:#eee; color: #bbb; width: 100%; border-radius: 0.5em; padding: 0.5em`;
-const SelectedWrapper = styled.div`
-	${({ $active }) => $active && `border: 1px solid #22f; padding: 0.25em;`}
-	display: flex;
-	&>* { width: 100%; margin: 0; }
-	& img, & video, & audio { height: fit-content; object-fit: cover; border-radius: 0.5em; aspect-ratio: 1; }	
-`;
