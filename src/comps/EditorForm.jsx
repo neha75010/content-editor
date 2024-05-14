@@ -9,23 +9,28 @@ const input = {
 	input : ({ ...props }) => <input type="text" { ...props } />,
 	textarea : ({ ...props }) => <textarea { ...props } />,
 	color : ({ ...props }) => <input type="color" { ...props } />,
-	src : ({ autoFocus, onChange, value, placeholder }) => {
-		var base64regex = /^([0-9a-zA-Z+/]{4})*(([0-9a-zA-Z+/]{2}==)|([0-9a-zA-Z+/]{3}=))?$/;
-		const [vl, setVl] = useState(!base64regex.test(value) ? value : "");
+	align : ({ onChange, value }) => {
+		const aligns = ['left', 'center', 'right'];
 
-		useEffect(() => {
-			onChange({ target: { value: vl } });
-		}, [vl]);
+		return <div>
+			{aligns.map((align, i) => <button key={i} onClick={() => onChange({ target: { value: align } })} />)}
+		</div>
+	},
+	src : ({ autoFocus, onChange, value, placeholder }) => {
+		const [vl, setVl] = useState(value);
+		useEffect(() => { onChange({ target: { value: vl } }); }, [vl]);
+
+		const file64 = e => {
+			var reader = new FileReader();
+			reader.readAsDataURL(e.target.files[0]);
+			reader.onload = () => setVl(reader.result);
+			reader.onerror = (error) => console.log('Error: ', error);
+		}
 
 		return <>
 			<input type="hidden" value={vl} onChange={onChange} />
-			<input type="text" onChange={e => setVl(e.target.value)} />
-			<input type="file" onChange={e => {
-				var reader = new FileReader();
-				reader.readAsDataURL(e.target.files[0]);
-				reader.onload = () => setVl(reader.result);
-				reader.onerror = (error) => console.log('Error: ', error);
-			}} multiple={false} accept="image/*" />
+			<input type="text" value={vl} onChange={e => setVl(e.target.value)} />
+			<input type="file" onChange={file64} multiple={false} accept="image/*" />
 		</>
 	},
 };

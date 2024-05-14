@@ -8,7 +8,10 @@ import { RiTextBlock } from "react-icons/ri";
 
 const elements = {
 	title: {
-		editor: [{ type: "input", inputType: "text", key: "content", label: "Titre" }],
+		editor: [
+			{ type: "input", inputType: "text", key: "content", label: "Titre" },
+			{ type: "align", key: "align", label: "Alignement" },
+		],
 		Render: ({ content, ...props }) => <h1 {...props}><Md>{content}</Md></h1>,
 		title : "Titre",
 		Icon: ({ ...props }) => <CiText {...props} />,

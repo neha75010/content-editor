@@ -12,7 +12,6 @@ export default function useDocument() {
 	useEffect(() => {
 		const json = JSON.stringify(document, null, 4);
 		localStorage.setItem("document", json);
-		//console.log(json);
 	}, [document])
 
 	return {document, addElement, rmvElement, swpElement, updElement, clrDocument, elements};
