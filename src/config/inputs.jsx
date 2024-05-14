@@ -21,7 +21,7 @@ const input = {
 		return <>
 			<input type="hidden" value={vl} onChange={onChange} />
 			<input type="text" value={vl} onChange={e => setVl(e.target.value)} />
-			<input type="file" onChange={file64} multiple={false} accept={mime} />
+			<input type="file" onChange={e => file64(e, setVl)} multiple={false} accept={mime} />
 		</>
 	},
 };

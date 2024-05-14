@@ -35,7 +35,7 @@ export const GStyle = createGlobalStyle`
     * {
         --sb-track-color: #ffff;
         --sb-thumb-color: var(--light);
-        --sb-size: 9px;
+        --sb-size: 12px;
         scroll-behavior: smooth;
     }
 
