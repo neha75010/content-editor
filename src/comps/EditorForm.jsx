@@ -4,8 +4,6 @@ import { AppContext } from "../providers/AppProvider";
 import { Muted, MutedSmall } from "./Muted";
 import RmvElement from "./ElementRmv";
 import SwpElement from "./ElementSwp";
-import { FaAlignLeft, FaAlignCenter, FaAlignRight } from "react-icons/fa6";
-import AlignInput from "./EditorFormAlignInput"
 import input from "../config/inputs";
 
 export default function EditorForm() {

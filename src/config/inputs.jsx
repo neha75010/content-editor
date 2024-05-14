@@ -1,3 +1,7 @@
+import { FaAlignLeft, FaAlignCenter, FaAlignRight } from "react-icons/fa6";
+import AlignInput from "../comps/EditorFormAlignInput"
+import { useState } from "react";
+
 const input = {
 	input : ({ ...props }) => <input type="text" { ...props } />,
 	textarea : ({ ...props }) => <textarea { ...props } />,
