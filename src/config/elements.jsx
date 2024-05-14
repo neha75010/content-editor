@@ -63,13 +63,13 @@ const elements = {
 		Icon: ({ ...props }) => <LuSeparatorHorizontal {...props} />,
 	},
 	image: {
-		editor: [{ type: "src", key: "content", label: "Source" }],
+		editor: [{ type: "src", key: "content", label: "Source", mime: "image/*" }],
 		Render: ({ content }) => <img src={content} />,
 		title : "Image",
 		Icon: ({ ...props }) => <CiImageOn {...props} />,
 	},
 	video: {
-		editor: [{ type: "input", key: "content", label: "Source" }],
+		editor: [{ type: "src", key: "content", label: "Source", mime: "video/*" }],
 		Render: ({ content }) => <video src={content} controls />,
 		title : "Video",
 		Icon: ({ ...props }) => <CiVideoOn {...props} />,

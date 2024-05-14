@@ -1,6 +1,7 @@
 import { FaAlignLeft, FaAlignCenter, FaAlignRight } from "react-icons/fa6";
 import AlignInput from "../comps/EditorFormAlignInput"
 import { useState, useEffect } from "react";
+import file64 from "../functions/file64";
 
 const input = {
 	input : ({ ...props }) => <input type="text" { ...props } />,
@@ -13,21 +14,14 @@ const input = {
 			{aligns.map((align, i) => <button key={i} onClick={() => onChange({ target: { value: align.name } })}><align.Icon /></button>)}
 		</AlignInput>
 	},
-	src : ({ autoFocus, onChange, value, placeholder }) => {
+	src : ({ autoFocus, onChange, value, placeholder, mime }) => {
 		const [vl, setVl] = useState(value);
 		useEffect(() => { onChange({ target: { value: vl } }); }, [vl]);
-
-		const file64 = e => {
-			var reader = new FileReader();
-			reader.readAsDataURL(e.target.files[0]);
-			reader.onload = () => setVl(reader.result);
-			reader.onerror = (error) => console.log('Error: ', error);
-		}
 
 		return <>
 			<input type="hidden" value={vl} onChange={onChange} />
 			<input type="text" value={vl} onChange={e => setVl(e.target.value)} />
-			<input type="file" onChange={file64} multiple={false} accept="image/*" />
+			<input type="file" onChange={file64} multiple={false} accept={mime} />
 		</>
 	},
 };

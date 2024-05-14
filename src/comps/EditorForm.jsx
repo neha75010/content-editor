@@ -12,11 +12,11 @@ export default function EditorForm() {
 
 	return <>
 		<Label> <MutedSmall>Ligne</MutedSmall> <SwpElement index={selected} onClick={select} onChange={e => select(e.target.value)} /> </Label>
-		{form.map(({ type, key, label }, i) => {
+		{form.map(({ type, key, label, ...props }, i) => {
 			const Comp = input[type];
 			return <Label key={i}>
 				<MutedSmall>{label}</MutedSmall>
-				<Comp autoFocus onChange={event => updElement(selected, key, event.target.value !== "" ? event.target.value : undefined)} value={document[selected][key] ?? ""} placeholder={label} />
+				<Comp autoFocus onChange={event => updElement(selected, key, event.target.value !== "" ? event.target.value : undefined)} value={document[selected][key] ?? ""} placeholder={label} {...props} />
 			</Label>;
 		})}
 		<RmvElement index={selected} onClick={() => select(null)} />
