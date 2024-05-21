@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import elements from "../config/elements";
+import { useParams } from "react-router-dom";
+import { APIContext } from "../providers/APIProvider";
 
-export default function useDocument() {
+export default function useDocument(id) {
+	const { socket } = useContext(APIContext);
 	const [document, setDocument] = useState(JSON.parse(localStorage.getItem("document")) ?? {});
 	const addElement = (type, props) => { const id = Object.values(document).length; setDocument({...document, [id] : {type, ...props}}); return id; }
 	const rmvElement = (index) => setDocument(Object.fromEntries(Object.entries(document).filter(([i, el]) => i !== index).map(([i, el], idx) => [idx, el])));
@@ -10,9 +13,12 @@ export default function useDocument() {
 	const clrDocument = () => setDocument({});
 
 	useEffect(() => {
-		const json = JSON.stringify(document, null, 4);
-		localStorage.setItem("document", json);
+		if(id && document !== {}) socket.emit('document:set', id, document);
 	}, [document])
+
+	useEffect(() => {
+		if(id) socket.emit('document:get', id, setDocument);
+	}, [id]);
 
 	return {document, addElement, rmvElement, swpElement, updElement, clrDocument, elements};
 }

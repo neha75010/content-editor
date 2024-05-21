@@ -10,6 +10,6 @@ export default function AddElement ({ type, ...props }) {
 		setScrollEnd(true);
 	}}>
 		<Icon size={32} />
-		{title}
+		<span>{title}</span>
 	</button>
 }

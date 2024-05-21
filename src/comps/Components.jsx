@@ -35,9 +35,23 @@ const ComponentsGrid = styled.div`
 		border: 0;
 		border-radius: 0.25em;
 		font-size: 8px;
+		white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+		aspect-ratio: 1;
+
+		& svg {
+			height: 100%;
+		}
 
 		&:hover {
 			background-color: #ddd;
+		}
+
+		& span {
+			width: 100%;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 	}
 `

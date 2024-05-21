@@ -5,14 +5,13 @@ import { GStyle } from './comps/GStyle'
 import Editor from './comps/Editor'
 import Components from './comps/Components'
 import './fonts/Raleway/.css';
+import Router from './comps/Router'
 
 function App() {
     return (
         <>
             <GStyle />
-            <Components />
-            <Document />
-            <Editor />
+            <Router />
         </>
     )
 }
