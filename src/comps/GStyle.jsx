@@ -39,6 +39,10 @@ export const GStyle = createGlobalStyle`
         scroll-behavior: smooth;
     }
 
+    a {
+        text-decoration: none;
+    }
+
     ::-webkit-scrollbar {
         width: var(--sb-size);
         height: var(--sb-size);

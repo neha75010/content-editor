@@ -16,9 +16,9 @@ export default function AppProvider ({ children }) {
 	const { cookies, reloadCookies, writeCookie, loadedCookies } = useCookies();
 	const { socket, axios } = useContext(APIContext);
 
-	useEffect(() => {
-		console.log(idDoc);
-	}, [idDoc]);
+	//useEffect(() => {
+		//console.log(idDoc);
+	//}, [idDoc]);
 
 	useEffect(() => {
 		socket.emit('users:get', setUsers);

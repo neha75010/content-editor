@@ -25,7 +25,7 @@ export default function Menu () {
 	return <Body>
 		<Box>
 			<div className="head">
-				<input type="text" onInput={e => setSearch(e.target.value)} value={search} />
+				<input type="text" onInput={e => setSearch(e.target.value)} value={search} placeholder="Recherche ou Titre de nouveau document" />
 				<button onClick={createDocument}>+ Nouveau document</button>
 				<Link to={"/signout"}>Signout</Link>
 			</div>

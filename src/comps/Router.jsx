@@ -3,6 +3,7 @@ import routes from "../config/routes";
 import { useContext, useEffect, useState } from "react";
 import { AppContext } from "../providers/AppProvider";
 import { decodeToken } from 'react-jwt'
+import Loader from "../views/Loader";
 
 export default function Router ({ children }) {
 	const { cookies : { token }, loadedCookies } = useContext(AppContext);
@@ -24,8 +25,9 @@ export default function Router ({ children }) {
 	const route = ({ logged = !!decodeToken(token)?.id, path, element }, i) => {
 		if (logged === !!decodeToken(token)?.id) return <Route key={i} path={path} element={element} />
 	}
+	const loaderView = <Route path="*" element={<Loader />} />
 
-	return counter === 3 && <Routes>
-		{!loadedCookies ? <Route path="*" element={<>ok</>} /> : routes.map(route)}
+	return  <Routes>
+		{counter !== 3 ? loaderView : (!loadedCookies ? loaderView : routes.map(route))}
 	</Routes>
 }

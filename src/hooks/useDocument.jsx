@@ -13,7 +13,7 @@ export default function useDocument(id) {
 	const clrDocument = () => setDocument({});
 
 	useEffect(() => {
-		if(id && document !== {}) socket.emit('document:set', id, document);
+		if(id && Object.values(document).length > 0) socket.emit('document:set', id, document);
 	}, [document])
 
 	useEffect(() => {
